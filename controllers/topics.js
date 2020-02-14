@@ -17,15 +17,15 @@ exports.getTopics = async (req, res, next) => {
 };
 
 exports.createTopic = (req, res, next) => {
-  const {name, date} = req.body;
-  pool.query("INSERT INTO topics (name, date) VALUES ($1, $2)", [name, date])
+  const {title, description, startdate, inprogress} = req.body;
+  pool.query("INSERT INTO topics (title, description, startdate, inprogress) VALUES ($1, $2, $3, $4)", [title, description, startdate, inprogress])
     .then(res.status(201).json({ success: true, data: [] }))
     .catch(err => next(err))
 };
 
 exports.updateTopic = (req, res, next) => {
-  const {name, date} = req.body;
-  pool.query("UPDATE topics SET name=$1, date=$2 WHERE id=$3", [name, date, req.params.id])
+  const {title, description, startdate, inprogress} = req.body;
+  pool.query("UPDATE topics SET title=$1, description=$2, startdate=$3, inprogress=$4 WHERE id= $5 ", [title, description, startdate, inprogress, req.params.id])
     .then(res.status(200).json({success: true, data: []}))
     .catch(err => next(err))
 };

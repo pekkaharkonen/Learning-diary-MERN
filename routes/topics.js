@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const {
   getTopic,
@@ -6,15 +6,15 @@ const {
   createTopic,
   updateTopic,
   deleteTopic
-} = require("../controllers/topics");
+} = require('../controllers/topics');
 
 router
-  .route("/")
+  .route('/')
   .get(getTopics)
   .post(createTopic);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(getTopic)
   .put(updateTopic)
   .delete(deleteTopic);

@@ -1,9 +1,15 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const morgan = require("morgan");
-const dotenv = require("dotenv").config();
+const morgan = require('morgan');
+const dotenv = require('dotenv').config();
+const cors = require('cors');
 
-app.use(morgan("tiny"));
+app.use(cors());
+app.use(express.json());
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('tiny'));
+}
 
 const PORT = process.env.PORT || 3000;
 

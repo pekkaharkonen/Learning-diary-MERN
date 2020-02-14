@@ -10,7 +10,7 @@ const pool = new Pool({
 exports.getTopics = async (req, res, next) => {
   try {
     let topics = await pool.query('SELECT * FROM topics');
-    res.json({ success: true, data: topics });
+    res.json({ success: true, data: topics.rows });
   } catch (err) {
     next(err);
   }
@@ -18,10 +18,10 @@ exports.getTopics = async (req, res, next) => {
 
 exports.createTopic = async (req, res, next) => {
   try {
-    const { title, description, startdate, inprogress } = req.body;
+    const { title, description, startdate } = req.body;
     await pool.query(
-      'INSERT INTO topics (title, description, start_date, in_progress) VALUES ($1, $2, $3, $4)',
-      [title, description, startdate, inprogress]
+      'INSERT INTO topics (title, description, start_date) VALUES ($1, $2, $3)',
+      [title, description, startdate]
     );
     res.status(201).json({ success: true, data: [] });
   } catch (err) {
@@ -31,10 +31,10 @@ exports.createTopic = async (req, res, next) => {
 
 exports.updateTopic = async (req, res, next) => {
   try {
-    const { title, description, startdate, inprogress } = req.body;
+    const { title, description, startdate } = req.body;
     await pool.query(
-      'UPDATE topics SET title=$1, description=$2, start_date=$3, in_progress=$4 WHERE id= $5 ',
-      [title, description, startdate, inprogress, req.params.id]
+      'UPDATE topics SET title=$1, description=$2, start_date=$3 WHERE id= $4 ',
+      [title, description, startdate, req.params.id]
     );
     res.status(200).json({ success: true, data: [] });
   } catch (err) {
@@ -47,7 +47,7 @@ exports.getTopic = async (req, res, next) => {
     let topic = await pool.query('SELECT * FROM topics WHERE id=$1', [
       req.params.id
     ]);
-    res.status(200).json({ success: true, data: topic });
+    res.status(200).json({ success: true, data: topic.rows });
   } catch (err) {
     next(err);
   }

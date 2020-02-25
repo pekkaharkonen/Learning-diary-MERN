@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
-import About from './components/pages/About';
+import Axios from 'axios'
 
 function App() {
+  const [topics, getTopics] = useState([])
+
+  useEffect(()=> {
+    getTopicsFromDB()
+  }, [])
+
+  const getTopicsFromDB = async() => {
+    let response = await Axios.get('/api/topics')
+  }
   return (
     <div className='App'>
       <Navbar />
-      <h1>My road to progammer!</h1>
+      <h1>Blablabla</h1>
     </div>
   );
 }

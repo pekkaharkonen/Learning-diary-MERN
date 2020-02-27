@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewTimelineItem = () => {
+const TimelineForm = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const NewTimelineItem = () => {
   )
 }
 
-export default NewTimelineItem
+export default TimelineForm

@@ -1,23 +1,42 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './components/layout/Navbar';
-import Axios from 'axios'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Nav from './components/layout/Nav';
+import Home from './components/pages/Home'
+import About from './components/pages/About'
+import { getTopics } from './services/topicsService';
+import TimelineForm from './components/timeline/TimelineForm';
+import Timeline from './components/timeline/Timeline';
 
 function App() {
-  const [topics, getTopics] = useState([])
+  const [topics, setTopics] = useState([]);
 
-  useEffect(()=> {
-    getTopicsFromDB()
-  }, [])
+  useEffect(() => {
+    getAndSetTopics();
+  }, []);
 
-  const getTopicsFromDB = async() => {
-    let response = await Axios.get('/api/topics')
-  }
+  const getAndSetTopics = async () => {
+    try {
+      let response = await getTopics();
+      setTopics(response.data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
-    <div className='App'>
-      <Navbar />
-      <h1>Blablabla</h1>
-    </div>
+    <Router>
+      <div className='App'>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/form" component={TimelineForm}/>
+          <Route path="/timeline" component={Timeline}/>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

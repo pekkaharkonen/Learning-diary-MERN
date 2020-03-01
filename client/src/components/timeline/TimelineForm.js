@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const TimelineForm = ({ addTopic, history }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [date, setDate] = useState(new Date().toLocaleDateString('fi'));
+  const [startdate, setStartdate] = useState(moment().format('YYYY-MM-DD'));
 
   const handleSubmit = e => {
     e.preventDefault();
     let topic = {
       title,
       description,
-      date
+      startdate
     };
     addTopic(topic);
     history.push('/manage');
@@ -48,8 +49,12 @@ const TimelineForm = ({ addTopic, history }) => {
             type='date'
             name='startdate'
             id='startdate'
-            value={date}
-            onChange={e => setDate(e.target.value)}
+            value={startdate}
+            onChange={e =>
+              setStartdate(
+                moment(new Date(e.target.value)).format('YYYY-MM-DD')
+              )
+            }
           />
         </div>
         <button type='submit'>Add</button>

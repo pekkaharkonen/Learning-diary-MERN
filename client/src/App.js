@@ -5,10 +5,16 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/layout/Nav';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
-import { getTopics, createTopic, deleteTopic } from './services/topicsService';
+import {
+  getTopics,
+  createTopic,
+  deleteTopic,
+  updateTopic
+} from './services/topicsService';
 import TimelineForm from './components/timeline/TimelineForm';
 import Timeline from './components/timeline/Timeline';
 import TimelineList from './components/timeline/TimelineList';
+import TimelineEdit from './components/timeline/TimelineEdit';
 
 function App() {
   const [topics, setTopics] = useState([]);
@@ -37,7 +43,18 @@ function App() {
 
   const removeTopic = async id => {
     try {
+      // Remove a topic from the state first to make the UI feel more responsive
+      setTopics(topics.filter(topic => topic._id !== id));
       await deleteTopic(id);
+      getAndSetTopics();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const updateItem = async data => {
+    try {
+      await updateTopic(data);
       getAndSetTopics();
     } catch (err) {
       console.error(err);
@@ -65,6 +82,16 @@ function App() {
                 {...routerProps}
                 topics={topics}
                 removeTopic={removeTopic}
+              />
+            )}
+          />
+          <Route
+            path='/edit/:id'
+            render={routerProps => (
+              <TimelineEdit
+                {...routerProps}
+                topics={topics}
+                updateItem={updateItem}
               />
             )}
           />

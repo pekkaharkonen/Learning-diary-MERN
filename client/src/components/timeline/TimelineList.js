@@ -2,7 +2,7 @@ import React from 'react';
 import TimelineListItem from './TimelineListItem';
 import PropTypes from 'prop-types';
 
-const TimelineList = ({ topics, removeTopic }) => {
+const TimelineList = ({ topics, removeTopic, history }) => {
   return (
     <div>
       <h1>Timeline list</h1>
@@ -20,6 +20,7 @@ const TimelineList = ({ topics, removeTopic }) => {
               key={topic._id}
               topic={topic}
               removeTopic={removeTopic}
+              history={history}
             />
           ))}
         </tbody>

@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
-const TimelineListItem = ({ topic, removeTopic }) => {
+const TimelineListItem = ({ topic, removeTopic, history }) => {
   const handleDelete = () => {
     removeTopic(topic._id);
+  };
+
+  const handleEdit = e => {
+    history.push(`/edit/${topic._id}`);
   };
 
   return (
     <tr>
       <td>{topic.title}</td>
       <td>{topic.description}</td>
-      <td>{topic.startdate}</td>
+      <td>{moment(topic.startdate).format('DD.MM.YYYY')}</td>
       <td>
-        <button>Edit</button>
+        <button onClick={handleEdit}>Edit</button>
       </td>
       <td>
         <button onClick={handleDelete}>Delete</button>

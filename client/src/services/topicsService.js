@@ -20,7 +20,9 @@ export const getTopic = async id => {
 };
 export const createTopic = async topic => {
   try {
+    console.log(topic);
     let response = await Axios.post(topicsURL, topic);
+    console.log(response.data);
     return response.data;
   } catch (err) {
     console.error(err.message);
@@ -29,7 +31,7 @@ export const createTopic = async topic => {
 
 export const updateTopic = async topic => {
   try {
-    let response = await Axios.put(`${topicsURL}/${topic.id}`, topic);
+    let response = await Axios.put(`${topicsURL}/${topic._id}`, topic);
     return response.data;
   } catch (err) {
     console.error(err.message);

@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 const TimelineListItem = ({ topic, removeTopic, history }) => {
   const handleDelete = () => {
-    removeTopic(topic._id);
+    Swal.fire({
+      title: `Are you sure you want to delete ${topic.title} from the list?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then(result => {
+      if (result.value) {
+        removeTopic(topic._id);
+      }
+    });
   };
 
   const handleEdit = e => {

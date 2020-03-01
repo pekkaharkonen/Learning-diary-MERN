@@ -1,0 +1,103 @@
+.timeline-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 3rem auto;
+  position: relative;
+  background: #f4f4f4;
+  max-width: 800px;
+}
+
+.timeline-container::after {
+  content: '';
+  background: #333;
+  position: absolute;
+  width: 4px;
+  left: calc(50%-2px);
+  height: 100%;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-start;
+  padding-right: 30px;
+  margin: 1.5rem 0;
+  width: 50%;
+}
+
+.timeline-item:first-child {
+  margin-top: 3rem;
+}
+
+.timeline-item:nth-child(odd) {
+  align-self: flex-end;
+  justify-content: flex-start;
+  padding-right: 0px;
+  padding-left: 30px;
+}
+.timeline-item-content {
+  max-width: 70%;
+  background: #fff;
+  border-radius: 0.2rem;
+  padding: 1rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+  width: 20rem;
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  position: relative;
+}
+.timeline-item:nth-child(odd) .timeline-item-content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.timeline-item-content::after {
+  content: '';
+  background-color: #fff;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  transform: rotate(45deg);
+  right: -0.5rem;
+  top: calc(50% - 0.5rem);
+  box-shadow: 1px -1px 5px 0 rgba(0, 0, 0, 0.05);
+}
+
+.timeline-item:nth-child(odd) .timeline-item-content::after {
+  content: '';
+  right: auto;
+  left: -0.5rem;
+  box-shadow: -1px 1px 5px 0 rgba(0, 0, 0, 0.05);
+}
+
+.timetine-item-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.timeline-item .circle {
+  background: #333;
+  border: 1px solid #333;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: -40px;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .circle {
+  right: auto;
+  left: -40px;
+}
+
+.timeline-item-date {
+  margin-bottom: 0.5rem;
+}

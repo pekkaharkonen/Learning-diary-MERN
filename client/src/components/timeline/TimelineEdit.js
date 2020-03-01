@@ -44,13 +44,14 @@ const TimelineEdit = ({ topics, match, history, updateItem }) => {
       </div>
       <div className='input-group'>
         <label htmlFor='description'>Enter new description</label>
-        <input
-          type='text'
+        <textarea
           name='description'
           id='editdescription'
+          cols='30'
+          rows='10'
           value={topic.description}
           onChange={e => setTopic({ ...topic, description: e.target.value })}
-        />
+        ></textarea>
       </div>
       <div className='input-group'>
         <label htmlFor='startdate'>Start date</label>

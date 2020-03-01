@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import TimelineItem from './TimelineItem';
+import './Timeline.css';
 
-const Timeline = () => {
+const Timeline = ({ topics }) => {
   return (
-    <div>
-      
+    <div className='timeline-container'>
+      {topics
+        .sort((a, b) => new Date(a.startdate) - new Date(b.startdate))
+        .map((topic, index) => (
+          <TimelineItem key={index} topic={topic} />
+        ))}
     </div>
-  )
-}
+  );
+};
 
-export default Timeline
+export default Timeline;

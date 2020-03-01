@@ -65,37 +65,44 @@ function App() {
     <Router>
       <div className='App'>
         <Nav />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
-          <Route
-            path='/add'
-            render={routerProps => (
-              <TimelineForm {...routerProps} addTopic={addTopic} />
-            )}
-          />
-          <Route path='/timeline' component={Timeline} />
-          <Route
-            path='/manage'
-            render={routerProps => (
-              <TimelineList
-                {...routerProps}
-                topics={topics}
-                removeTopic={removeTopic}
-              />
-            )}
-          />
-          <Route
-            path='/edit/:id'
-            render={routerProps => (
-              <TimelineEdit
-                {...routerProps}
-                topics={topics}
-                updateItem={updateItem}
-              />
-            )}
-          />
-        </Switch>
+        <div className='container'>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route
+              path='/add'
+              render={routerProps => (
+                <TimelineForm {...routerProps} addTopic={addTopic} />
+              )}
+            />
+            <Route
+              path='/timeline'
+              render={routerProps => (
+                <Timeline {...routerProps} topics={topics} />
+              )}
+            />
+            <Route
+              path='/manage'
+              render={routerProps => (
+                <TimelineList
+                  {...routerProps}
+                  topics={topics}
+                  removeTopic={removeTopic}
+                />
+              )}
+            />
+            <Route
+              path='/edit/:id'
+              render={routerProps => (
+                <TimelineEdit
+                  {...routerProps}
+                  topics={topics}
+                  updateItem={updateItem}
+                />
+              )}
+            />
+          </Switch>
+        </div>
       </div>
     </Router>
   );

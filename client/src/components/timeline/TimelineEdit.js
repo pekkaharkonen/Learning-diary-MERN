@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import {
+  FormGroup,
+  Input,
+  Button,
+  InputLabel,
+  Typography
+} from '@material-ui/core';
 
 const TimelineEdit = ({ topics, match, history, updateItem }) => {
   const [topic, setTopic] = useState({
@@ -30,32 +37,37 @@ const TimelineEdit = ({ topics, match, history, updateItem }) => {
     history.push('/manage');
   };
   return (
-    <div>
-      <h1>Edit Timeline Item</h1>
-      <div className='input-group'>
-        <label htmlFor='title'>Enter new title</label>
-        <input
+    <div
+      style={{
+        maxWidth: '900px',
+        margin: 'auto'
+      }}
+    >
+      <Typography align='center' variant='h4' style={{ marginBottom: '3rem' }}>
+        Edit component
+      </Typography>
+      <FormGroup>
+        <InputLabel htmlFor='title'>Enter new title</InputLabel>
+        <Input
           type='text'
           name='title'
           id='edittitle'
           value={topic.title}
           onChange={e => setTopic({ ...topic, title: e.target.value })}
         />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='description'>Enter new description</label>
-        <textarea
+      </FormGroup>
+      <FormGroup>
+        <InputLabel htmlFor='description'>Enter new description</InputLabel>
+        <Input
           name='description'
           id='editdescription'
-          cols='30'
-          rows='10'
           value={topic.description}
           onChange={e => setTopic({ ...topic, description: e.target.value })}
-        ></textarea>
-      </div>
-      <div className='input-group'>
-        <label htmlFor='startdate'>Start date</label>
-        <input
+        ></Input>
+      </FormGroup>
+      <FormGroup>
+        <InputLabel htmlFor='startdate'>Start date</InputLabel>
+        <Input
           type='date'
           name='startdate'
           id='editstartdate'
@@ -67,9 +79,27 @@ const TimelineEdit = ({ topics, match, history, updateItem }) => {
             })
           }
         />
-      </div>
-      <button onClick={handleEdit}>Confirm</button>
-      <button onClick={handleCancel}>Cancel</button>
+      </FormGroup>
+      <FormGroup>
+        <Button
+          variant='contained'
+          color='primary'
+          type='submit'
+          style={{ marginTop: '1rem' }}
+          onClick={handleEdit}
+        >
+          Confirm
+        </Button>
+        <Button
+          variant='contained'
+          color='default'
+          type='submit'
+          style={{ marginTop: '0.5rem' }}
+          onClick={handleCancel}
+        >
+          Cancel
+        </Button>
+      </FormGroup>
     </div>
   );
 };

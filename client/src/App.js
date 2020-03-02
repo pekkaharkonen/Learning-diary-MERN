@@ -15,6 +15,7 @@ import TimelineForm from './components/timeline/TimelineForm';
 import Timeline from './components/timeline/Timeline';
 import TimelineList from './components/timeline/TimelineList';
 import TimelineEdit from './components/timeline/TimelineEdit';
+import { Container } from '@material-ui/core';
 
 function App() {
   const [topics, setTopics] = useState([]);
@@ -64,8 +65,8 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <Nav />
-        <div className='container'>
+        <Nav title={'My Timeline'} />
+        <Container maxWidth='lg'>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -102,7 +103,7 @@ function App() {
               )}
             />
           </Switch>
-        </div>
+        </Container>
       </div>
     </Router>
   );

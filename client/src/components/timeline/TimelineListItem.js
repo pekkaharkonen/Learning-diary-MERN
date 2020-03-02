@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { TableRow, TableCell, Button } from '@material-ui/core';
 
 const TimelineListItem = ({ topic, removeTopic, history }) => {
   const handleDelete = () => {
@@ -23,17 +24,21 @@ const TimelineListItem = ({ topic, removeTopic, history }) => {
   };
 
   return (
-    <tr>
-      <td>{topic.title}</td>
-      <td>{topic.description}</td>
-      <td>{moment(topic.startdate).format('DD.MM.YYYY')}</td>
-      <td>
-        <button onClick={handleEdit}>Edit</button>
-      </td>
-      <td>
-        <button onClick={handleDelete}>Delete</button>
-      </td>
-    </tr>
+    <TableRow>
+      <TableCell style={{ fontWeight: 'bold' }}>{topic.title}</TableCell>
+      <TableCell>{topic.description}</TableCell>
+      <TableCell>{moment(topic.startdate).format('DD.MM.YYYY')}</TableCell>
+      <TableCell>
+        <Button onClick={handleEdit} variant='contained' color='default'>
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell>
+        <Button onClick={handleDelete} variant='contained' color='primary'>
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
   );
 };
 

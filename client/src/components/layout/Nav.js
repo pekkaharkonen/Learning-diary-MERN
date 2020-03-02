@@ -1,27 +1,30 @@
 import React from 'react';
-import './Nav.css';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+// import './Nav.css';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Nav = ({ title }) => {
   return (
-    <nav>
-      <div>{title}</div>
-      <ul>
-        <Link to='/timeline'>
-          <li>View</li>
-        </Link>
-        <Link to='/manage'>
-          <li>Manage</li>
-        </Link>
-        <Link to='/add'>
-          <li>Add</li>
-        </Link>
-        <Link to='/about'>
-          <li>About</li>
-        </Link>
-      </ul>
-    </nav>
+    <AppBar position='static'>
+      <Toolbar style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <Typography variant='h6'>{title}</Typography>
+        <div>
+          <NavLink to='/timeline' style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }}>View</Button>
+          </NavLink>
+          <NavLink to='/manage' style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }}>Manage</Button>
+          </NavLink>
+          <NavLink to='/add' style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }}>Add</Button>
+          </NavLink>
+          <NavLink to='/about' style={{ textDecoration: 'none' }}>
+            <Button style={{ color: 'white' }}>About</Button>
+          </NavLink>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
 

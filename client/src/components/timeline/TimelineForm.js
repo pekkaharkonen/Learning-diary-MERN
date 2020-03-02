@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import {
+  FormGroup,
+  Input,
+  Button,
+  InputLabel,
+  Typography
+} from '@material-ui/core';
 
 const TimelineForm = ({ addTopic, history }) => {
   const [title, setTitle] = useState('');
@@ -20,32 +27,38 @@ const TimelineForm = ({ addTopic, history }) => {
 
   return (
     <div>
-      <h1>Add a new item to the timeline</h1>
-      <form onSubmit={handleSubmit}>
-        <div className='input-group'>
-          <label htmlFor='title'>Title</label>
-          <input
+      <Typography align='center' variant='h4' style={{ marginBottom: '3rem' }}>
+        Add a new item to the timeline
+      </Typography>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          maxWidth: '900px',
+          margin: 'auto'
+        }}
+      >
+        <FormGroup>
+          <InputLabel htmlFor='title'>Title</InputLabel>
+          <Input
             type='text'
             name='title'
             id='title'
             value={title}
             onChange={e => setTitle(e.target.value)}
           />
-        </div>
-        <div className='input-group'>
-          <label htmlFor='title'>Description</label>
-          <textarea
+        </FormGroup>
+        <FormGroup>
+          <InputLabel htmlFor='title'>Description</InputLabel>
+          <Input
             name='description'
             id='description'
-            cols='30'
-            rows='10'
             value={description}
             onChange={e => setDescription(e.target.value)}
-          ></textarea>
-        </div>
-        <div className='input-group'>
-          <label htmlFor='startdate'>Start date</label>
-          <input
+          />
+        </FormGroup>
+        <FormGroup>
+          <InputLabel htmlFor='startdate'>Start date</InputLabel>
+          <Input
             type='date'
             name='startdate'
             id='startdate'
@@ -56,8 +69,17 @@ const TimelineForm = ({ addTopic, history }) => {
               )
             }
           />
-        </div>
-        <button type='submit'>Add</button>
+        </FormGroup>
+        <FormGroup>
+          <Button
+            variant='contained'
+            color='primary'
+            type='submit'
+            style={{ marginTop: '1rem' }}
+          >
+            Add
+          </Button>
+        </FormGroup>
       </form>
     </div>
   );
